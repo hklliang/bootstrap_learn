@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>demo02</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script type="application/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="application/javascript" src="js/bootstrap.min.js"></script>
+
+	</head>
+
+	<body>
+
+		<!--<nav class="navbar navbar-default">-->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
+			<div class="container">
+			<button class="navbar-toggle" data-toggle='collapse' data-target='#responsive-navbar'>
+					<span class='icon-bar'></span>
+					<span class='icon-bar'></span>
+					<span class='icon-bar'></span>
+				</button>
+				<a href="#" class="navbar-brand"><strong>ninhao</strong>.net</a>
+				<div class="collapse navbar-collapse" id='responsive-navbar'>
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="">课程</a>
+						</li>
+						<li>
+							<a href="">博客</a>
+						</li>
+						<li>
+							<a href="">手册</a>
+						</li>
+					</ul>
+
+					<form action='' class='navbar-form navbar-left'>
+						<input type='text' placeholder="搜索" class='form-control'>
+						<button type='sumbit'>
+					<span class='glyphicon glyphicon-search'></span>
+				</button>
+					</form>
+					<a href='' class='btn btn-primary btn-sm navbar-btn navbar-right hidden-xs'>订阅课程</a>
+					<div class="profile navbar-right">
+						<ul class="nav navbar-nav">
+							<li>
+								<a href="" data-toggle='modal' data-target='#login-modal'>登录</a>
+								<!--<a href="login-form.html" data-toggle='modal' data-target='#login-modal'>登录</a>-->
+							</li>
+							<li>
+								<a href="">注册</a>
+							</li>
+						</ul>
+						<p class='navbar-text'>您好，
+							<a href="#" class='navbar-link'>hklliang</a>
+						</p>
+
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<p class="alert alert-info">
+				你好啊，我不是好人，但我很奈斯哦你好啊，我不是好人，但我很奈斯哦 你好啊，我不是好人，但我很奈斯哦 你好啊，我不是好人，但我很奈斯哦 你好啊，我不是好人，但我很奈斯哦 你好啊，我不是好人，但我很奈斯哦 你好啊，我不是好人，但我很奈斯哦你好啊，我 你好啊，我不是好人，但我很奈斯哦你好啊，我
+			</p>
+		</div>
+			<!--<div class="modal fade" id='login-modal' tabindex="-1"data-backdrop='false'>-->		
+			<div class="modal fade" id='login-modal' tabindex="-1" data-remote='login-form.html'>	
+				<div class="modal-dialog ">
+					<div class="modal-content">
+						
+					</div>
+				</div>
+			</div>
+			<script>
+//				$(function(){
+//					$('#login-modal').modal({
+//						show:false,
+//						backdrop:false,
+//						remote:'login-form.html'
+//						
+//					})
+//				})
+			</script>
+				
+			<!--<div class="modal-backdrop in"></div>-->
+	</body>
+
+</html>

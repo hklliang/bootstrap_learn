@@ -1,0 +1,32 @@
+body{
+	padding-top: 70px;
+}
+.navbar .navbar-form{
+	position:relative;
+}
+.navbar .navbar-form input[type='text']{
+	background:#313131 ;
+	border:none;
+	color:#999;
+	
+}
+.navbar .navbar-form button{
+	position:absolute;
+	top:30%;
+	right:20px;
+	background: none;
+	border: none;
+	
+}
+/*大于等于768时*/
+@media(min-width:768px) {
+	.navbar .navbar-form button{
+		top:20%;
+	}
+}
+.navbar .navbar-form .glyphicon{
+	color:#999;
+}
+.profile{
+	margin-right: 25px;
+}
