@@ -9,7 +9,8 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<script type="application/javascript" src="js/jquery-1.11.1.min.js"></script>
 		<script type="application/javascript" src="js/bootstrap.min.js"></script>
-
+		<script type="application/javascript" src="js/holder.min.js"></script>
+		<script type="application/javascript" src="js/app.js"></script>
 	</head>
 
 	<body>
@@ -18,7 +19,7 @@
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
 			<div class="container">
-			<button class="navbar-toggle" data-toggle='collapse' data-target='#responsive-navbar'>
+				<button class="navbar-toggle" data-toggle='collapse' data-target='#responsive-navbar'>
 					<span class='icon-bar'></span>
 					<span class='icon-bar'></span>
 					<span class='icon-bar'></span>
@@ -62,31 +63,100 @@
 				</div>
 			</div>
 		</nav>
-		<div class="container">
+
+		<!--<div class="container">-->
+			<div class="carousel slide" data-ride='carousel' id='slideshow' 
+				data-interval='1000' data-pause='false' data-wrap='false'><!--data-ride 控制自动播放,data-wrap是否循环,data-pause悬停-->
+				<ol class="carousel-indicators">
+					<li data-target="#slideshow" data-slide-to="0" class='active'></li>
+					<li data-target="#slideshow" data-slide-to="1"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						<img src="holder.js/1200x500?text=Hello" alt="" />
+						<div class="carousel-caption">
+							<h2>Bootstrap</h2>
+							<p>sfsdfsdfsdfsdf</p>
+						</div>
+					</div>
+					<div class="item ">
+						<img src="holder.js/1200x500?text=Hi" alt="" />
+					</div>
+				</div>
+				<a href="#slideshow" class='left carousel-control' data-slide='prev'>
+					<span class='glyphicon glyphicon-chevron-left'></span>
+				</a>
+				<a href="#slideshow" class='right carousel-control' data-slide='next'>
+					<span class='glyphicon glyphicon-chevron-right'></span>
+				</a>
+			</div>
+			<div class="text-center" style='padding: 20px;'>
+				<div class="btn-group">
+					<button class="btn btn-default pre-slide">
+						<span class="glyphicon glyphicon-backward">
+							
+						</span>
+					</button>
+					<button class="btn btn-default play-and-stop">
+						<span class="glyphicon glyphicon-play "></span>
+					</button>
+					<button class="btn btn-default next-slide">
+						<span class="glyphicon glyphicon-forward">
+							
+						</span>
+					</button>
+
+				</div>
+			</div>
+		<!--</div>-->
+		<!--<div class="container">
 			<p class="alert alert-info">
 				你好啊，我不是好人，但我很奈斯哦你好啊，我不是好人，但我很奈斯哦 你好啊，我不是好人，但我很奈斯哦 你好啊，我不是好人，但我很奈斯哦 你好啊，我不是好人，但我很奈斯哦 你好啊，我不是好人，但我很奈斯哦 你好啊，我不是好人，但我很奈斯哦你好啊，我 你好啊，我不是好人，但我很奈斯哦你好啊，我
 			</p>
-		</div>
-			<!--<div class="modal fade" id='login-modal' tabindex="-1"data-backdrop='false'>-->		
-			<div class="modal fade" id='login-modal' tabindex="-1" data-remote='login-form.html'>	
-				<div class="modal-dialog ">
-					<div class="modal-content">
-						
-					</div>
+		</div>-->
+		<!--<div class="modal fade" id='login-modal' tabindex="-1"data-backdrop='false'>-->
+		<div class="modal fade" id='login-modal' tabindex="-1" data-remote='login-form.html'>
+			<div class="modal-dialog ">
+				<div class="modal-content">
+
 				</div>
 			</div>
-			<script>
-//				$(function(){
-//					$('#login-modal').modal({
-//						show:false,
-//						backdrop:false,
-//						remote:'login-form.html'
-//						
-//					})
-//				})
-			</script>
-				
-			<!--<div class="modal-backdrop in"></div>-->
+		</div>
+		<script>
+			//				$(function(){
+			//					$('#login-modal').modal({
+			//						show:false,
+			//						backdrop:false,
+			//						remote:'login-form.html'
+			//						
+			//					})
+			//				})
+			$(function() {
+				$('#login-modal').on('show.bs.modal', function() {
+					console.log('显示对话框');
+				});
+				$('#login-modal').on('shown.bs.modal', function() {
+					console.log('已显示对话框');
+				});
+				$('#login-modal').on('hide.bs.modal', function() {
+					console.log('隐藏对话框');
+				});
+				$('#login-modal').on('hidden.bs.modal', function() {
+					console.log('隐藏了对话框');
+				});
+				$('#login-modal').on('loaded.bs.modal', function() {
+					console.log('加载完了对话框');
+				});
+				$('#slideshow').on('slide.bs.carousel',function(){
+					console.log('播放幻灯片')
+				});
+				$('#slideshow').on('slid.bs.carousel',function(){
+					console.log('播放幻灯片完成')
+				});
+			})
+		</script>
+
+		<!--<div class="modal-backdrop in"></div>-->
 	</body>
 
 </html>

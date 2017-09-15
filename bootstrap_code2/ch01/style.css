@@ -1,6 +1,9 @@
 body{
-	padding-top: 70px;
-}
+	padding-top: 50px;
+};
+/*img{
+	width:100%;
+};*/
 .navbar .navbar-form{
 	position:relative;
 }
