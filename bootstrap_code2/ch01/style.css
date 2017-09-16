@@ -1,25 +1,27 @@
 body{
 	padding-top: 50px;
-};
-img{
+}
+.item img{
 	width:100%;
 	height:100px;
-};
+	overflow: hidden;
+}
 .navbar .navbar-form{
 	position:relative;
 }
-.navbar .navbar-form input[type='text']{
-	background:#313131 ;
-	border:none;
-	color:#999;
-	
-}
+
 .navbar .navbar-form button{
 	position:absolute;
 	top:30%;
 	right:20px;
 	background: none;
 	border: none;
+	
+}
+.navbar .navbar-form input[type='text']{
+	background:#313131 ;
+	border:none;
+	color:#999;
 	
 }
 /*大于等于768时*/
