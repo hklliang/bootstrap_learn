@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/GridManager.css">
+	<script type="text/javascript" src="../js/GridManager.js"></script>
+    <title>GridManager:多表渲染</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+	<div style="width:95%;margin:0px auto;">
+		<table grid-manager="test1"></table>
+	</div>
+	<br/>
+	<br/>
+	<br/>
+	<div style="width:95%;margin:0px auto;">
+		<table grid-manager="test2"></table>
+	</div>
+<script type="text/javascript">
+	document.querySelector('table[grid-manager="test1"]').GM({
+		supportRemind: true
+		,height: '300px'
+		,supportAjaxPage:true
+		,supportSorting: true
+		,supportCheckbox: false
+		,ajax_url: 'http://www.lovejavascript.com/learnLinkManager/getLearnLinkList'
+		,ajax_type: 'POST'
+		,query: {pluginId: 1, ccname: 'baukh'}
+		,i18n: 'en-us'
+		,textConfig: {
+			'order-text': {
+				'zh-cn':'序号2',
+				'en-us':'orderNumber'  // 从order 更改为 orderNumber
+			}
+			,'first-page': {
+				'zh-cn':'第一页',	// 从首页 更改为 第一页
+				'en-us':'first'
+			}
+		}
+		,pageSize:10
+		,columnData: [{
+			key: 'name',
+			remind: 'the name',
+			width: '100px',
+			text: '名称',
+			sorting: 'up'
+		},{
+			key: 'info',
+			remind: 'the info',
+			text: '使用说明',
+			sorting: ''
+		},{
+			key: 'url',
+			remind: 'the url',
+			text: 'url'
+		},{
+			key: 'action',
+			remind: 'the action',
+			text: '操作',
+			template: function(action, rowObject){
+				return '<span class="plugin-action edit-action" learnLink-id="'+rowObject.id+'">编辑</span>'
+						+'<span class="plugin-action del-action" learnLink-id="'+rowObject.id+'">删除</span>';
+			}
+		}
+		]
+		,ajax_success: function () {
+			console.log('test1 ajax_success');
+		}
+	});
+	document.querySelector('table[grid-manager="test2"]').GM({
+		supportRemind: true
+		,height: '400px'
+		,ajax_url: 'http://www.lovejavascript.com/learnLinkManager/getLearnLinkList'
+		,ajax_type: 'POST'
+		,query: {pluginId: 2, 'bbname': 'kouzi'}
+		,pageSize:20
+		,supportAjaxPage:true
+		,columnData: [{
+			key: 'name',
+			remind: 'the name',
+			width: '100px',
+			text: '名称',
+			sorting: 'up'
+		},{
+			key: 'info',
+			remind: 'the info',
+			text: '使用说明',
+			sorting: ''
+		},{
+			key: 'url',
+			remind: 'the url',
+			text: 'url'
+		},{
+			key: 'action',
+			remind: 'the action',
+			text: '操作',
+			template: function(action, rowObject){
+				return '<span class="plugin-action edit-action" learnLink-id="'+rowObject.id+'">编辑</span>'
+						+'<span class="plugin-action del-action" learnLink-id="'+rowObject.id+'">删除</span>';
+			}
+		}
+		]
+		,ajax_success: function (data) {
+			console.log(document.querySelector('table[grid-manager="test2"]').GM('get'))
+			console.log('test2 ajax_success');
+		}
+	});
+
+
+</script>
+
+</body>
+</html>

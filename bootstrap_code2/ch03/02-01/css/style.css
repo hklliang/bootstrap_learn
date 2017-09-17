@@ -7,22 +7,24 @@ h3, p{
   padding:20px;
 }
 
+/*内容居中*/
 .container{
   width:960px;
   margin:0 auto;
 }
-
+/*将网页分成页头，导航，页脚，主内容，边栏*/
 #header, #navigation, #footer, #mainbody, #sidebar{
   height:100px;
   line-height:25px;
   background:#eee;
   margin-bottom:20px;
 }
-
+/*内容和边栏漂浮*/
 #mainbody, #sidebar{
   height:300px;
   float:left;
 }
+/*主内容设置*/
 #mainbody {
   width:620px;
   margin-right:20px;
@@ -32,6 +34,7 @@ h3, p{
   width:320px;
   background:#ffcbdd;
 }
+/*要清除漂浮*/
 #footer{
   clear:both;
 }
@@ -62,6 +65,7 @@ h3, p{
   }
 }
 
+/*小设备时要清除漂浮*/
 @media ( max-width: 767px ){
   #mainbody, #sidebar{
     float: none;
