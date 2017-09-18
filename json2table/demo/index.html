@@ -6,14 +6,25 @@
 		<title>jQuery Table Of Contents Plugin.</title>
 		<link href="../libs/css/bootstrap.min.css" rel="stylesheet">
 		<style>
-			.jsontotable table,
-			.jsontotable th{
-				border: 2px solid black;
+			.jsontotable table {
+				border: 1px solid rgb(81, 130, 187);
 				font-family: "微软雅黑";
 			}
+			
+			.jsontotable thead {
+				background-color: rgb(81, 130, 187);
+				color: #fff;
+				border-bottom-width: 1;
+			}
+			
+			.jsontotable tbody {
+				padding: 5px 10px;
+				font-size: 12px;
+				font-weight: normal;
+			}
+			
 			.jsontotable td {
-				border: 1px solid black;
-				margin: 10px;
+				border: 1px solid #0E90D2;
 			}
 			
 			code {
@@ -24,28 +35,51 @@
 
 	<body>
 		<div class="container">
-			
+			<button id='refresh' class="btn btn-primary">刷新</button>
 			<div id="jsontotable-str" class="jsontotable"></div>
 		</div>
 		<script type="text/javascript" src="../libs/js/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="../dist/jquery.jsontotable.min.js"></script>
+		<script type="text/javascript" src="../src/jquery.jsontotable.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				
+				$('#refresh').click(function() {
+					$.ajax({
+						type: 'post',
+						url: 'xxx',  
+						dataType: 'text',
+						success: function(data) {
+							var dataObj = eval("(" + data + ")");
+							for(var i = 0; i < dataObj.length; i++) {
+								alert(dataObj[i].id + " " + dataObj[i].name);
+							}
+
+							var jsonObj = eval("(" + data + ")");
+							$.each(jsonObj, function(i, item) {
+								alert(item.id + "," + item.name);
+							});
+						},
+						error: function(text) {}
+					});
+				});
 
 				var str = '[\
-				{"Title1": "Hello", "Title2": "Fine", "Title3": "Thank you"}, \
-        {"Title1": "안녕하세요", "Title2": "좋아요", "Title3": "감사합니다"}, \
-        {"Title1": "こんにちは", "Title2": "ファイン", "Title3": "ありがとう"}, \
-				{"Title1": "你好", "Title2": "精", "Title3": "谢谢"}, \
-				{"Title1": "Bonjour", "Title2": "Beaux", "Title3": "Merci"}, \
-        {"Title1": "Ciao", "Title2": "Bene", "Title3": "Grazie1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"} \
+				{"Titlea": "Hello", "Title2": "Fine", "Title3": "Thank you"}, \
+        {"Titleaaa": "안녕하세요", "Titlea": "좋아요", "Title3": "감사합니다"}, \
+        {"Title1": "こんにちは", "Titlea": "ファイン", "Title3": "ありがとう"}, \
+				{"Titleaaaa": "你好", "Titlea": "精", "Title3": "谢谢"}, \
+				{"Title1": "Bonjour", "Titlea": "Beaux", "Title3": "Merci"}, \
+        {"Titleaaaa": "Ciao", "Title2": "Bene", "Title3": "Grazie1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"} \
 			]';
+				var arr = [
+					[1, 2, 3],
+					['one', 'two', 'three']
+				];
 
-
-				$.jsontotable(str, {
+				$.jsontotable(arr, {
 					id: "#jsontotable-str",
-					className: "table table-hover"
+					tableClassName: "table table-hover",
+					theadClassName: 'aaa',
+					tbodyClassName: 'bbb'
 				});
 			});
 		</script>
