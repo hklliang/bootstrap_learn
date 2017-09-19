@@ -2,12 +2,15 @@
  * Created by Administrator on 2017/9/19.
  */
 $(document).ready(function () {
+
     $('#refresh').click(function () {
+        $('#load').addClass('show');
         $.ajax({
             type: 'post',
             url: '/rate',
             dataType: 'text',
             success: function (data) {
+                $('#load').removeClass('show')
                 $('#con').find('#jsontotable-str').remove();
                 var table = $('<div id="jsontotable-str" class="jsontotable"></div>');
                 $('#con').append(table);
