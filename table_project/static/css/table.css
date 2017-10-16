@@ -1,4 +1,6 @@
-
+.jsontotable{
+    width:100%
+}
 .jsontotable table {
     border: 1px solid rgb(81, 130, 187);
     font-family: "微软雅黑";
@@ -23,13 +25,21 @@
     cursor:pointer;
 }
 
+
 code {
     white-space: normal;
 }
 
-#refresh {
-    margin: 20px auto;
+#con{
+    height: 100px;
+    width:100%;
 }
+
+#refresh{
+    margin-top: 20px;
+    margin-left:50px;
+}
+
 
 #load {
     position: fixed;

@@ -13,7 +13,8 @@
 		var obj = data;
 		if(typeof obj === "string") {
 			obj = $.parseJSON(obj);
-		}
+		};
+
 
 		if(options.id && obj.length) {
 
