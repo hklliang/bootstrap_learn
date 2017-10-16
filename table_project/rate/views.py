@@ -12,7 +12,7 @@ rateparms = dict(
         'username': "kevin_mpt",
     },
     rate_url='https://www.pkfare.com/hotel/rates?time={time}',
-    uri="mongodb://hoteluser:Hotelgfuser2016@101.37.20.31:27017/?authSource=admin&authMechanism=SCRAM-SHA-1"
+    uri="mongodb://hoteluser:Hotelgfuser2016@112.124.12.40:27017/?authSource=admin&authMechanism=SCRAM-SHA-1"
 )
 # 112.124.12.40 生产环境
 # 101.37.20.31 测试环境
@@ -96,17 +96,27 @@ def index(request):
 
 
 def hotelRate(request):
+
     return render(request, 'hotelRate.html')
 
 
 def getHotelRate(request):
-    checkInDate=(datetime.datetime.now()+ datetime.timedelta(days = 2)).strftime('%Y-%m-%d')
-    checkOutDate = (datetime.datetime.now() + datetime.timedelta(days=3)).strftime('%Y-%m-%d')
+
+    # checkInDate=(datetime.datetime.now()+ datetime.timedelta(days = 2)).strftime('%Y-%m-%d')
+    # checkOutDate = (datetime.datetime.now() + datetime.timedelta(days=3)).strftime('%Y-%m-%d')
+
     if request.method == 'POST':
+        checkInDate=request.POST.get('Check_in')
+        checkOutDate = request.POST.get('Check_out')
+        Adult_nums=request.POST.get('Adult_nums')
+        Room_nums=request.POST.get('Room_nums')
+        hotel_list =pattern.split(request.POST.get('Hotel_id'))
+        # print(checkInDate,checkOutDate,Adult_nums,Room_nums,Hotel_list)
+
         All_room_list = [['Hotel_id', 'Supplier', 'Room_type', 'Price', 'Breakfast', 'Refund']]
-        hotel_list = pattern.split(request.body.decode("utf-8"))
+        # hotel_list = pattern.split(request.body.decode("utf-8"))
         for row, hotel_id in enumerate(hotel_list):
-            room_list = pkfarerate.get_pkfare_rate(row, hotel_id, checkInDate, checkOutDate, '1', '1', 0)
+            room_list = pkfarerate.get_pkfare_rate(row, hotel_id, checkInDate, checkOutDate, Adult_nums, Room_nums, 0)
             if room_list:
                 All_room_list.extend(room_list)
 
@@ -134,20 +144,20 @@ order by `linkStatus`
 # hotels = initial()
 
 
-class HotelSearch(View):
-    def get(self, request):
-        return render(request, 'hotelSearch.html')
-
-    def post(self, request):
-        # keys=re.sub('\s+','',request.body.decode("utf-8")).splitlines()
-        keys = request.body.decode("utf-8").splitlines()
-        pat_keys = '(%s)' % ')|('.join(keys)
-        title = ['hotel_id', 'hotelseq', 'linkStatus', 'status', 'country', 'city', 'address', 'hotel_name']
-        title.extend(list(range(len(keys))))
-        All_hotel_list = [title]
-        match_hotels = hotels['gf_hotel_name'].str.extract(pat_keys, flags=re.IGNORECASE, expand=True)
-        hotels_data = hotels.join(match_hotels).dropna(subset=list(range(len(keys))), how='all').fillna('')
-        hotels_list = hotels_data.values.tolist()
-        All_hotel_list.extend(hotels_list)
-
-        return HttpResponse(str(All_hotel_list[:300]))
+# class HotelSearch(View):
+#     def get(self, request):
+#         return render(request, 'hotelSearch.html')
+#
+#     def post(self, request):
+#         # keys=re.sub('\s+','',request.body.decode("utf-8")).splitlines()
+#         keys = request.body.decode("utf-8").splitlines()
+#         pat_keys = '(%s)' % ')|('.join(keys)
+#         title = ['hotel_id', 'hotelseq', 'linkStatus', 'status', 'country', 'city', 'address', 'hotel_name']
+#         title.extend(list(range(len(keys))))
+#         All_hotel_list = [title]
+#         match_hotels = hotels['gf_hotel_name'].str.extract(pat_keys, flags=re.IGNORECASE, expand=True)
+#         hotels_data = hotels.join(match_hotels).dropna(subset=list(range(len(keys))), how='all').fillna('')
+#         hotels_list = hotels_data.values.tolist()
+#         All_hotel_list.extend(hotels_list)
+#
+#         return HttpResponse(str(All_hotel_list[:300]))

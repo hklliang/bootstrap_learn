@@ -21,9 +21,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^qunar_room$', views.qunar_room),
     url(r'^hotelrate$', views.hotelRate),
+
     url(r'^$', views.index),
     url(r'^getHotelRate$', views.getHotelRate),
-    url(r'^hotelsearch', views.HotelSearch.as_view()),
-    url(r'^getHotelSearch', views.HotelSearch.as_view()),
+    # url(r'^hotelsearch', views.HotelSearch.as_view()),
+    # url(r'^getHotelSearch', views.HotelSearch.as_view()),
 
 ]

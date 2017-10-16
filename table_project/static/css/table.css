@@ -49,6 +49,7 @@ code {
     height:100%;
     background-color: #101010;
     opacity:0.3;
+    z-index: 1000;
     display: none;
 }
 .show{

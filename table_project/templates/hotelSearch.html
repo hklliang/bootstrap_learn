@@ -34,39 +34,39 @@
     $(document).ready(function () {
         $('#hotelList').textareafullscreen();
 
-            $('#refresh').click(function () {
-                $('#load').addClass('show');
-                var hotellist=$('#hotelList').val()
-                $.ajax({
-                    type: 'post',
-                    url: '/getHotelSearch',
-                    dataType: 'text',
-                    data:hotellist,
-                    success: function (data) {
+        $('#refresh').click(function () {
+            $('#load').addClass('show');
+            var hotellist = $('#hotelList').val()
+            $.ajax({
+                type: 'post',
+                url: '/getHotelSearch',
+                dataType: 'text',
+                data: hotellist,
+                success: function (data) {
 
-                        $('#load').removeClass('show')
-                        $('#con').find('#jsontotable-str').remove();
-                        var table = $('<div id="jsontotable-str" class="jsontotable"></div>');
-                        $('#con').append(table);
-                        var arr = eval(data);
-                        $.jsontotable(arr, {
-                            id: "#jsontotable-str",
-                            tableClassName: "table table-hover",
-                            theadClassName: 'aaa',
-                            tbodyClassName: 'bbb'
+                    $('#load').removeClass('show')
+                    $('#con').find('#jsontotable-str').remove();
+                    var table = $('<div id="jsontotable-str" class="jsontotable"></div>');
+                    $('#con').append(table);
+                    var arr = eval(data);
+                    $.jsontotable(arr, {
+                        id: "#jsontotable-str",
+                        tableClassName: "table table-hover",
+                        theadClassName: 'aaa',
+                        tbodyClassName: 'bbb'
 
-                        })
-                        $('.color-0').parent().parent().css('background-color', '#F3FBFD');
-                        $('.color-1').parent().parent().css('background-color', 'rgb(207, 222, 222)');
-                    },
-                    error: function (text) {
-                        alert(text)
-                    }
-    });
+                    })
+                    $('.color-0').parent().parent().css('background-color', '#F3FBFD');
+                    $('.color-1').parent().parent().css('background-color', 'rgb(207, 222, 222)');
+                },
+                error: function (text) {
+                    alert(text)
+                }
+            });
 
 
-    })
-    ;
+        })
+        ;
     })
     ;
 
