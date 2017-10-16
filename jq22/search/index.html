@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>酒界电商搜索页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="css/history.css" />
+		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	</head>
+
+	<body>
+		<!--<a href="JavaScript:history.back(-1)"><img src="img/back.png" style="position: absolute;top:1.7rem;left: 1rem;" /></a>-->
+		<img src="img/icon_search.png" style="position: absolute;top:1.9rem;left:4rem;width:1.6rem;height:1.6rem;" />
+		<div id="">
+			<input class="" id="idNumber1" style="margin-top:1.5rem;margin-left:3rem;outline-style: none;background-color: #eee;text-indent:3rem;text-overflow:ellipsis;">
+			<button id="search">搜索</button>
+			<div class="delete history" "></div>
+		</div>
+
+		<!--<p style="margin-top: .5rem;border-top: 1px solid #9A9A9A;font-family: '微软雅黑';">历史</p>-->
+
+		
+		
+
+		<div class="history" id="his-dele"><img src="img/icon_search_del.png" style="width:.98rem;height:.92rem;display: inline-block;" />清除记录</div>
+		<!--清空历史记录-->
+
+		<script>
+			$(document).delegate(".delete>div", "click", function() {
+				$("#idNumber1").val($(this).text());
+			});
+
+			/*搜索记录相关*/
+			//从localStorage获取搜索时间的数组
+			var hisTime;
+			//从localStorage获取搜索内容的数组
+			var hisItem;
+			//从localStorage获取最早的1个搜索时间
+			var firstKey;
+
+			function init() {
+				//每次执行都把2个数组置空
+				hisTime = [];
+				hisItem = [];
+				//模拟localStorage本来有的记录
+				//localStorage.setItem("a",12333);
+				//本函数内的两个for循环用到的变量
+				var i = 0
+				for(; i < localStorage.length; i++) {
+					if(!isNaN(localStorage.key(i))) {
+						hisItem.push(localStorage.getItem(localStorage.key(i)));
+						hisTime.push(localStorage.key(i));
+					}
+				}
+				i = 0;
+				//执行init(),每次清空之前添加的节点
+				$(".delete").html("");
+				for(; i < hisItem.length; i++) {
+					//alert(hisItem);
+					$(".delete").prepend('<div class="word-break" id=""style=" z-index: 1000;">' + hisItem[i] + '</div>')
+				}
+			}
+			init();
+
+			$("#search").click(function() {
+				var value = $("#idNumber1").val();
+				var time = (new Date()).getTime();
+
+				if(!value) {
+					alert("请输入搜索内容");
+					return false;
+				}
+
+				//输入的内容localStorage有记录
+				if($.inArray(value, hisItem) >= 0) {
+					for(var j = 0; j < localStorage.length; j++) {
+						if(value == localStorage.getItem(localStorage.key(j))) {
+							localStorage.removeItem(localStorage.key(j));
+						}
+					}
+					localStorage.setItem(time, value);
+				}
+				//输入的内容localStorage没有记录
+				else {
+					//由于限制了只能有6条记录，所以这里进行判断
+					if(hisItem.length > 10) {
+						firstKey = hisTime[0]
+						localStorage.removeItem(firstKey);
+						localStorage.setItem(time, value);
+					} else {
+						localStorage.setItem(time, value)
+					}
+				}
+				init();
+				//正式的时候要提交的！！！
+				//$("#form1").submit()
+
+			});
+
+			//清除记录功能
+			$("#his-dele").click(function() {
+				var f = 0;
+				for(; f < hisTime.length; f++) {
+					localStorage.removeItem(hisTime[f]);
+				}
+				init();
+			});
+			//苹果手机不兼容出现input无法取值以下是解决方法
+			$(function() {
+				$('.word-break').click(function() {
+					var div = $(this).text();
+					$('#idNumber1').val(div);
+				})
+				//取到值以后button存储无法取值，这里强迫浏览器强行刷新可解决
+				$('#search').click(function() {
+					window.location.reload();
+				})
+			})
+		</script>
+	</body>
+
+</html>
