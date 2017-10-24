@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/GridManager.css">
+	<script type="text/javascript" src="../js/GridManager.js"></script>
+    <title>GridManager:I18N en-us</title>
+    <style>
+		html, body{
+			width: 100%;
+			height: 100%;
+			overflow-x:hidden;
+			margin: 0;
+			padding: 0;
+		}
+        .plugin-action{
+            display: inline-block;
+            color: steelblue;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .plugin-action:hover{
+            text-decoration:underline;
+        }
+		.search-area{
+			padding: 10px 20px;
+			border: 1px solid #ccc;
+			background: #efefef;
+		}
+		.search-area .sa-ele{
+			display: inline-block;
+			margin-right: 20px;
+			font-size: 12px;
+		}
+		.search-area .sa-ele .se-title{
+			display: inline-block;
+			margin-right: 10px;
+		}
+		.search-area .sa-ele .se-con{
+			display: inline-block;
+			width:180px;
+			height: 24px;
+			border: 1px solid #ccc;
+			padding: 0px 4px;
+			line-height: 24px;
+		}
+		.search-area .sa-ele .search-action, .search-area .sa-ele .reset-action{
+			display: inline-block;
+			width:80px;
+			height: 26px;
+			border: 1px solid #ccc;
+			background: #e8e8e8;
+			padding: 0px 4px;
+			line-height: 26px;
+			text-align: center;
+			cursor: pointer;
+			margin-right: 10px;
+		}
+		.search-area .sa-ele .search-action:hover, .search-area .sa-ele .reset-action:hover{
+			opacity: 0.7;
+		}
+    </style>
+</head>
+
+<body>
+	<div class="search-area">
+		<div class="sa-ele">
+			<label class="se-title">名称:</label>
+			<input class="se-con" name="name"/>
+		</div>
+		<div class="sa-ele">
+			<label class="se-title">使用说明:</label>
+			<input class="se-con" name="info"/>
+		</div>
+		<div class="sa-ele">
+			<label class="se-title">url:</label>
+			<input class="se-con" name="url"/>
+		</div>
+		<div class="sa-ele">
+			<button class="search-action">搜索</button>
+			<button class="reset-action">重置</button>
+		</div>
+	</div>
+	<br/>
+	<table></table>
+
+<script type="text/javascript">
+	var table = document.querySelector('table');
+	var TGM = table.GM({
+		supportDrag: true//是否允许拖拽
+		,supportAdjust:true//是否允许挑战宽
+		,supportRemind: true //提示信息
+		,supportConfig:true//操作列是否可见
+		,animateTime:300//拖拽时的动画
+		,disableCache:true//false表示禁用记忆用户宽度、列位置、列显示隐藏
+		,supportSorting: true//是否允许排序
+		,isCombSorting: true//是否允许组合排序
+		,sortUpText:'DESC'//更改排序操作所使用的升序标识, 字符串类型， 默认为'DESC'，columnData中的sorting所使用的值也一并要改变。
+//		sortDownText
+		,supportAjaxPage:true//分页实现需要后端语言通过 GridManager 传递的参数[ cPage(当前页) 和 pSize(每页显示条数) ] 返回对应的数据。
+//		,sizeData:[10,20]//配置每页显示条数
+		,pageSize:30//配置初始进入时每页的显示条数，需要与sizeData中的值匹配，在启用本地缓存的情况下，每页的显示数为上次用户调整后的数值。
+		,ajax_url: 'http://www.lovejavascript.com/learnLinkManager/getLearnLinkList'
+		,ajax_type: 'POST'//ajax请求类型['GET', 'POST']默认GET
+		,query: {pluginId: 1}//可用于搜索条件传递;
+		,i18n: 'zh-cn'//选择使用哪种语言，暂时支持[zh-cn:简体中文，en-us:美式英语] 
+		,supportAutoOrder:true//是否有自动序号
+//		,supportCheckbox:false //是否支持正反选
+		,gridManagerName: 'test1'//grid-master='test1'
+		,height: 'auto'//表格高度
+		,width:'50px'
+		,dataKey:'data' //ajax请求返回的列表数据key键值,默认为data
+		,totalsKey:'totals'//ajax请求返回的数据总条数key键值,默认为totals
+//		,ajax_data:ajaxData1 //静态数据的时候使用，且需要定义ajaxData1变量
+		//配置后将不再通过ajax_url进行数据请求,且ajax_beforeSend、ajax_error、ajax_complete将失效，仅有ajax_success会被执行。
+		//ajax_data 只适用于无法实时获取数据时使用，正常情况下请使用 ajax_url 指定请求地址。
+//ajax_data 所配置的表格， 分页与排序操作将没有实际效果。
+//		,emptyTemplate:'<p>hello world</p>'
+
+//AJAX成功事件函数，在请求执行成功后触发
+		,ajax_success:function () {
+			console.log('test1 ajax_success');
+		}
+//AJAX结束事件函数，在请求结束后无论成功与失败都会触发    
+		,ajax_complete: function () {
+			console.log('test1 ajax_complete');
+		}
+		,ajax_error:function(){
+			console.log('test1 ajax_error');
+		}
+		,supportExport:true
+//		,ajax_headers:
+		//用于配置ajax请求头信息
+		,columnData: [{
+				key: 'name',// 列的唯一索引。字符串类型，必设项   
+				// 列的表头提醒内容,字符串类型，非必设项
+			    // 在初始化参数supportRemind=true时生效
+			    remind: '文本介绍',
+
+				remind: 'the name',
+				width: '100px',// 列所占宽度, 字符串类型，非必设项
+				 // 1.如果当前列的th内文本实际占用宽度大于该参数指定的宽度时， GridManager会自动进行适配。
+    			// 2.建议不要将所有的列都进行宽度设置，而留一个进行自动适应
+//  			 align: '',
+    			 // 列文本对齐信息，字符串类型，非必设项
+    			// 三种值: 'left', 'center', 'right'
+    			// 列的排序类型，字符串类型，非必设项
+			    // 在初始化参数supportSorting=true时生效。有三种值:
+			    // 1、'': 该列支持排序，但初始化时不指定排序类型
+			    // 2、'DESC': 该列支持排序，并在初始化时指定排序类型为降序。可通过参数[sortDownText]来指定降序所使用的字符串
+			    // 3、'ASC': 该列支持排序，并在初始化时指定排序类型为升序。可通过参数[sortUpText]来指定升序所使用的字符串
+//			    sorting: 'DESC',
+				text: 'name',
+				sorting: '',
+				//arg1表示此单元格的名称， arg2表示这个单元格对象
+				template:function(name,rowObject){
+					console.log(name)
+					console.log(rowObject)
+					return '<a href="#">'+name+'<a>'
+				}
+			},{
+				key: 'info',
+				remind: 'the info',
+				text: 'info'
+			},{
+				key: 'url',
+				remind: 'the url',
+				text: 'url'
+			},{
+				key: 'createDate',
+				remind: 'the createDate',
+				width: '100px',
+				text: 'createDate',
+				sorting: 'DESC',
+				template: function(createDate, rowObject){
+					return new Date(createDate).format('YYYY-MM-DD HH:mm:ss');
+				}
+			},{
+				key: 'lastDate',
+				remind: 'the lastDate',
+				width: '100px',
+				text: 'lastDate',
+				sorting: '',
+				template: function(lastDate, rowObject){
+					return new Date(lastDate).format('YYYY-MM-DD HH:mm:ss');
+				}
+			},{
+				key: 'action',
+				remind: 'the action',
+				width: '100px',
+				text: 'action',
+				template: function(action, rowObject){
+					return '<span class="plugin-action edit-action" learnLink-id="'+rowObject.id+'">编辑</span>'
+							+'<span class="plugin-action del-action" onclick="delectRowData(this)" learnLink-id="'+rowObject.id+'">删除</span>';
+				}
+			}
+		]
+		// 分页前事件
+		,pagingBefore: function(query){
+			console.log('pagingBefore', query);
+		}
+		// 分页后事件
+		,pagingAfter: function(data){
+			console.log('pagingAfter', data);
+		}
+		// 排序前事件
+		,sortingBefore: function (data) {
+			console.log('sortBefore', data);
+		}
+		// 排序后事件
+		,sortingAfter: function (data) {
+			console.log('sortAfter', data);
+		}
+		// 宽度调整前事件
+		,adjustBefore: function (event) {
+			console.log('adjustBefore', event);
+		}
+		// 宽度调整后事件
+		,adjustAfter: function (event) {
+			console.log('adjustAfter', event);
+		}
+		// 拖拽前事件
+		,dragBefore: function (event) {
+			console.log('dragBefore', event);
+		}
+		// 拖拽后事件
+		,dragAfter: function (event) {
+			console.log('dragAfter', event);
+		}
+	}, function(query){
+		// 渲染完成后的回调函数
+		console.log(query);
+	});
+
+	// 日期格式化,不是插件的代码,只用于处理时间格式化
+	Date.prototype.format = function(fmt){
+		var o = {
+			"M+": this.getMonth() + 1, //月份
+			"D+": this.getDate(), //日
+			"d+": this.getDate(), //日
+			"H+": this.getHours(), //小时
+			"h+": this.getHours(), //小时
+			"m+": this.getMinutes(), //分
+			"s+": this.getSeconds(), //秒
+			"q+": Math.floor((this.getMonth() + 3) / 3), //季度
+			"S": this.getMilliseconds() //毫秒
+		};
+		if (/([Y,y]+)/.test(fmt)){
+			fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+		}
+		for (var k in o){
+			if(new RegExp("(" + k + ")").test(fmt)){
+				fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+			}
+		}
+		return fmt;
+	};
+
+	// 绑定搜索事件
+	document.querySelector('.search-action').addEventListener('click', function () {
+		var _query = {
+			name: document.querySelector('[name="name"]').value,
+			info: document.querySelector('[name="info"]').value,
+			url: document.querySelector('[name="url"]').value
+		};
+		table.GM('setQuery', _query).GM('refreshGrid', function () {
+			console.log('搜索成功...');
+		});
+	});
+
+	// 绑定重置
+	document.querySelector('.reset-action').addEventListener('click', function () {
+		document.querySelector('[name="name"]').value = '';
+		document.querySelector('[name="info"]').value = '';
+		document.querySelector('[name="url"]').value = '';
+	});
+	var a=document.querySelector('table').GM('getCheckedTr'); // [tr, tr, tr]
+	//获取当前选中的列, 返回为数组格式的TR DOM节点。
+//	document.querySelector('table').GM('exportGridToXls', fileName, onlyChecked);
+	// 删除功能
+	function delectRowData(node){
+		console.log(node.getAttribute('learnLink-id'))
+		// 获取到当前的tr node
+		var tr = node.parentNode.parentNode;
+		// 获取到当前渲染tr 所使用的数据
+		var rowData = document.querySelector('table').GM('getRowData', tr);
+		// 执行删除操作
+		if(window.confirm('确认要删除['+rowData.name+']?')){
+			window.alert('当然这只是个示例,并不会真实删除,要不然每天我每天就光填demo数据了.');
+		}
+	}
+</script>
+
+</body>
+</html>
