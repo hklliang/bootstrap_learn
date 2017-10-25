@@ -62,7 +62,7 @@ class PkfareRate():
 
         try:
 
-            data = 'checkInDate={checkInDate}&checkOutDate={checkOutDate}&hotelId={hotel_id}&numberOfAdults={numberOfAdults}&numberOfChildren={numberOfChildren}&tt=1505466748062&numberOfRooms=1'.format(
+            data = 'checkInDate={checkInDate}&checkOutDate={checkOutDate}&hotelId={hotel_id}&numberOfAdults={numberOfAdults}&numberOfChildren={numberOfChildren}&tt=1505466748062&numberOfRooms={numberOfRooms}'.format(
                 checkInDate=checkInDate, checkOutDate=checkOutDate, numberOfAdults=numberOfAdults,
                 numberOfRooms=numberOfRooms, hotel_id='{hotel_id}',numberOfChildren=numberOfChildren
             )
@@ -78,7 +78,7 @@ class PkfareRate():
                 print('login')
                 json_res = json.loads(res.text)
             if json_res['data'] != None:
-                pk_url = 'https://www.pkfare.com/modules/view/hotelSearch/hotelDetail.html?checkInDate%3D{checkInDate}%26checkOutDate%3D{checkOutDate}%26hotelId%3D{hotel_id}%26numberOfAdults%3D{numberOfAdults}%26numberOfChildren%3D{numberOfChildren}'.format(
+                pk_url = 'https://www.pkfare.com/modules/view/hotelSearch/hotelDetail.html?checkInDate%3D{checkInDate}%26checkOutDate%3D{checkOutDate}%26hotelId%3D{hotel_id}%26numberOfAdults%3D{numberOfAdults}%26numberOfRooms%3D{numberOfRooms}%26numberOfChildren%3D{numberOfChildren}'.format(
                     checkInDate=checkInDate, checkOutDate=checkOutDate, numberOfAdults=numberOfAdults,
                     numberOfRooms=numberOfRooms, hotel_id='{hotel_id}',numberOfChildren=numberOfChildren
                 )
