@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from rate import views
+from map.views import HotelMap,EditHotelMap
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,5 +27,8 @@ urlpatterns = [
     url(r'^getHotelRate$', views.getHotelRate),
     # url(r'^hotelsearch', views.HotelSearch.as_view()),
     # url(r'^getHotelSearch', views.HotelSearch.as_view()),
+    url(r'^getHotelMap', HotelMap.as_view()),
+    url(r'^EditHotelMap', EditHotelMap.as_view()),
+
 
 ]
