@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}{% endblock %}</title>
+		<!--{% block css %}{% endblock %}-->
+		<style>
+			body{
+				margin: 0;
+				padding: 0;
+				font-family: "微软雅黑";
+			}
+			*{
+				
+				text-decoration: none;
+			}
+			.left{
+				float: left;
+				
+			}
+			.right{
+				float: right;
+			}
+			.hide{
+				display: none;
+			}
+			.clearfix:after,
+			.clearfix:before{
+				content:'';
+				display:table;
+				clear:both;
+			}
+			.pg-header{
+				height:48px;
+				background-color: #2f72ab;
+				min-width: 1000px;
+				line-height: 48px;
+			}
+			.pg-header .logo{
+				color:white;
+				font-size: 24px;
+				width: 200px;
+				background-color: #1c5a9c;
+            	text-align: center;
+			}
+			.pg-header .h1-menu .item,.pg-header .hr-menu .item{
+				color:white;
+				padding:0 10px;
+				
+			}
+			.pg-header .h1-menu .item:hover,.pg-header .hr-menu .item:hover{
+				display: inline-block;
+				background-color: #1c5a9c;
+			}
+			.pg-header .h1-menu .item-set{
+				display: inline-block;
+				position: relative;
+			}
+			.pg-header .h1-menu .item-set .sets,.avatar .sets  {
+				position: absolute;
+				background-color: aliceblue;
+				border: 1px solid #dddddd;
+				display: none;
+				width: 150px;
+				
+			}
+			.pg-header .h1-menu .item-set:hover .sets,.avatar:hover .sets   {
+				display: block;
+				z-index:1;
+				
+			}
+			.pg-header .h1-menu .item-set .sets a,.avatar .sets  a{
+				color:#333;
+				display: block;
+				padding-left:10px;
+				border-bottom: 1px solid #bbb;
+				
+			}
+			.sets a:hover{
+				color:#ddd;
+				background-color :#2f72ab; 
+			}
+			.avatar{
+				position: relative;
+			}
+			
+			.avatar .sets{
+				position: absolute;
+				width: 150px;
+				border:1px solid #dddddd;
+				top:48px;
+				left:-110px;
+				display: none;
+				
+			}
+			.avatar img{
+				margin-top:4px;
+			}
+			
+			.pg-body .menus{
+				width:200px;
+				/*background-color: #dd3636;*/
+				position: absolute;
+				left:0;
+				top:48px;
+				bottom: 0;
+			}
+			.pg-body .contents{
+				position: absolute;
+				top:48px;
+				background-color: #ddd;
+				bottom: 0;
+				right:0;
+				left:200px;
+				overflow: auto;
+			}
+			.menus .item  .item-title{
+				padding: 8px;
+				background-color: #ddd;
+				font-weight: bold;
+			}
+			
+			
+		
+			
+			
+			
+			.menus .item .item-content a{
+				display: block;
+				padding: 3px 10px;
+				order-right:3px solid transparent;
+				
+			}
+			.menus .item .item-content a:hover{
+				border-right:3px solid cornflowerblue;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="pg-header">
+			<div class="logo left">Hello</div>
+			<div class="h1-menu left">
+				<a class='item' href='#'>菜单一</a>
+				<a class='item' href='#'>菜单二</a>
+				<a class='item' href='#'>菜单三</a>
+				<div class='item-set'>
+					<a class='item' href='#'>菜单四</a>
+					<div class='sets'>
+						<a href='#'>菜单四-1</a>
+						<a href='#'>菜单四-1</a>
+						<a href='#'>菜单四-1</a>
+						
+					</div>
+				</div>
+			</div>
+			<div class="hr-menu right">
+				<a class='item' href='#'>消息</a>
+				<a class='item' href='#'>通知</a>
+				<a class='item' href='#'>任务</a>
+				<div class='avatar right' >
+					<a class='item' href='#'>
+						<img src='default.png'/>
+					</a>
+					<div class='sets '>
+						<a href='#'>菜单四-1</a>
+						<a href='#'>菜单四-1</a>
+						<a href='#'>菜单四-1</a>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="pg-body">
+			<div class='menus'>
+				<div class='item'>
+					<div class="item-title"><a href="#">标题1</a></div>
+					<div class="item-content">
+						<a href="#">文章管理</a>
+						<a href="#">标签管理</a>
+						<a href="#">分类管理</a>
+					</div>
+				</div>
+				<div class='item'>
+					<div class="item-title"><a href="#">标题1</a></div>
+					<div class="item-content">
+						<a href="#">文章管理</a>
+						<a href="#">标签管理</a>
+						<a href="#">分类管理</a>
+					</div>
+				</div>
+				
+			</div>
+			<div class='contents'>
+				<div style="height:2000px;"></div>
+				<!--{% block content %}{% endblock %}-->
+			</div>
+			
+		</div>
+		<div class="pg-footer"></div>
+	</body>
+</html>
